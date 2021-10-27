@@ -1,0 +1,26 @@
+<body>
+  <div class="container">
+    <div id="content">
+      <p id="search-header">Find sandsynligheden for nedbør på din adresse</p>
+      <form class='form-inline'>
+          <input ngx-google-places-autocomplete 
+          type="text"
+          id="search"
+          class="search-form"
+          [options]='options'
+          #placesRef="ngx-places" 
+          (onAddressChange)="handleAddressChange($event)"
+          placeholder="Søg på en dansk adresse"
+          />
+      </form>
+      <div class="result-text" *ngIf="response$ | async as response">
+        <p class="text-center">
+          {{formattedAddress}}
+        </p>
+        <h3 id="precipitation-text">
+          Sansynlighed for nedbør: <span class="precipitation">{{ response.precipitation }}</span>%
+        </h3>
+      </div>
+    </div>
+  </div>
+</body>
